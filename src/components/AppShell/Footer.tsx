@@ -1,45 +1,32 @@
 import { ActionIcon, Group, Stack, Text } from "@mantine/core";
-import {
-  IconBuildingStore,
-  IconChartPie,
-  IconClipboardList,
-} from "@tabler/icons-react";
+import { IconHome } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
 import React from "react";
 
 export default function Footer() {
   return (
     <Group justify="space-around">
-      <Element
-        icon={<IconChartPie />}
-        label="Categories"
-      />
-      <Element
-        icon={<IconBuildingStore />}
-        label="Shops"
-      />
-      <Element
-        icon={<IconClipboardList />}
-        label="Transactions"
-      />
+      <Element icon={<IconHome />} label="Home" page="/" />
     </Group>
   );
 }
 
-const Element = ({ icon, label }: { icon: React.ReactNode; label: string }) => {
+const Element = ({
+  icon,
+  label,
+  page,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  page: string;
+}) => {
   const router = useRouter();
   const handleClick = () => {
-    router.push(`/${label.toLowerCase()}`);
+    router.push(`/${page.toLowerCase()}`);
   };
   return (
-    <Stack
-      align="center"
-      gap={3}
-    >
-      <ActionIcon
-        onClick={handleClick}
-        variant="subtle"
-      >
+    <Stack align="center" gap={3}>
+      <ActionIcon onClick={handleClick} variant="subtle">
         {icon}
       </ActionIcon>
       <Text style={{ fontSize: "0.6rem" }}> {label}</Text>

@@ -59,9 +59,11 @@ export default function Login() {
 
   return (
     <main>
-      <Title>{title}</Title>
       <form onSubmit={form.onSubmit((values) => logIn(values))}>
         <Stack>
+          <Title order={1} size="h4">
+            {title}
+          </Title>
           <TextInput
             label="Email address"
             id="email"
@@ -76,10 +78,7 @@ export default function Login() {
             key={form.key("password")}
             {...form.getInputProps("password")}
           />{" "}
-          <Anchor
-            href="https://mantine.dev/"
-            target="_blank"
-          >
+          <Anchor href="https://mantine.dev/" target="_blank">
             Forgotten your password?
           </Anchor>
           <Button type="submit">{buttonText}</Button>

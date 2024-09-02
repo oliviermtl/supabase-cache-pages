@@ -24,6 +24,7 @@ import Login from "../Auth/Login";
 import Signout from "../Auth/Signout";
 import Footer from "./Footer";
 import { IconColorSchemeToggle } from "../ColorSchemeToggle/IconColorSchemeToggle";
+import { config } from "@/config";
 
 export function Layout({ children }: any) {
   const session = useSession();
@@ -69,87 +70,52 @@ export function Layout({ children }: any) {
       padding="xs"
     >
       <AppShell.Header>
-        <Group
-          h="100%"
-          px="md"
-          justify="space-between"
-        >
-          <Burger
-            opened={opened}
-            onClick={toggle}
-            hiddenFrom="sm"
-            size="sm"
-          />
+        <Group h="100%" px="md" justify="space-between">
+          <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
           <Text
             inherit
             variant="gradient"
             component="span"
             gradient={{ from: "pink", to: "yellow" }}
           >
-            $69Money{" "}
+            {config.appName}
           </Text>
 
           <Group>
             <IconColorSchemeToggle />
-            <ActionIcon
-              onClick={toggleSidePanel}
-              variant="subtle"
-            >
+            <ActionIcon onClick={toggleSidePanel} variant="subtle">
               <IconUser />
             </ActionIcon>
           </Group>
         </Group>
       </AppShell.Header>
-      <AppShell.Navbar
-        p="md"
-        hiddenFrom="sm"
-      >
+      <AppShell.Navbar p="md" hiddenFrom="sm">
         Navbar
         {Array(15)
           .fill(0)
           .map((_, index) => (
-            <Skeleton
-              key={index}
-              h={28}
-              mt="sm"
-              animate={false}
-            />
+            <Skeleton key={index} h={28} mt="sm" animate={false} />
           ))}
       </AppShell.Navbar>
       <AppShell.Main>
-        <Box
-          pos="relative"
-          style={{ height: "calc(100vh - 86px)" }}
-        >
-          <LoadingOverlay
-            visible={visible}
-            loaderProps={{ children: " " }}
-          />
+        <Box pos="relative" style={{ height: "calc(100vh - 86px)" }}>
+          <LoadingOverlay visible={visible} loaderProps={{ children: " " }} />
 
           {children}
         </Box>
       </AppShell.Main>
-      <AppShell.Aside
-        p="md"
-        style={{ maxWidth: "360px", zIndex: 1000 }}
-      >
+      <AppShell.Aside p="md" style={{ maxWidth: "360px", zIndex: 1000 }}>
         <Stack>
           <Group justify="space-between">
-            <Flex
-              flex={1}
-              justify={"center"}
-            >
+            <Flex flex={1} justify={"center"}>
               <Text
                 variant="gradient"
                 gradient={{ from: "pink", to: "yellow" }}
               >
-                $69Money
+                {config.appName}
               </Text>
             </Flex>
-            <ActionIcon
-              variant="subtle"
-              onClick={toggleSidePanel}
-            >
+            <ActionIcon variant="subtle" onClick={toggleSidePanel}>
               <IconX />
             </ActionIcon>
           </Group>

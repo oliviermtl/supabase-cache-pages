@@ -1,13 +1,11 @@
 import { Title, Text, Anchor } from "@mantine/core";
 import classes from "./Welcome.module.css";
+import { config } from "@/config";
 
 export function Welcome() {
   return (
     <>
-      <Title
-        className={classes.title}
-        ta="center"
-      >
+      <Title className={classes.title} ta="center">
         Welcome to{" "}
         <Text
           inherit
@@ -15,18 +13,11 @@ export function Welcome() {
           component="span"
           gradient={{ from: "pink", to: "yellow" }}
         >
-          $69Money
+          {config.appName}
         </Text>
       </Title>
-      <Text
-        c="dimmed"
-        ta="center"
-        size="lg"
-        maw={580}
-        mx="auto"
-        mt="xl"
-      >
-        Try not to get broke, and don&apos;t forget to save!
+      <Text c="dimmed" ta="center" size="lg" maw={580} mx="auto" mt="xl">
+        {config.appDescription}
       </Text>
     </>
   );

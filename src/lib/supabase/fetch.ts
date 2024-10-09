@@ -13,8 +13,10 @@ export const getCurrentUser = async () => {
   return data;
 };
 
-export const getRooms = async () => {
-  const { data, error } = await supabase.from("rooms").select("*");
+export const getProperties = async () => {
+  const { data, error } = await supabase
+    .from("properties_view_materialized")
+    .select("*");
   if (error) {
     throw error;
   }

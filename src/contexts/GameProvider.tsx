@@ -1,4 +1,4 @@
-import { useRooms } from "@/hooks/useRooms";
+import { useProperties } from "@/hooks/useProperties";
 import { supabase } from "@/lib/supabase/fetch";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useReducer } from "react";
@@ -30,7 +30,7 @@ const GameProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   }, []);
 
-  const { refetch } = useRooms();
+  const { refetch } = useProperties();
 
   const handleChange = (payload: any) => {
     console.log("Change received!", payload);
@@ -38,18 +38,18 @@ const GameProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   useEffect(() => {
-    const rooms = supabase.channel("rooms");
+    const properties = supabase.channel("properties");
 
-    rooms
+    properties
       .on(
         "postgres_changes",
-        { event: "INSERT", schema: "public", table: "rooms" },
+        { event: "INSERT", schema: "public", table: "properties" },
         handleChange
       )
       .subscribe();
 
     return () => {
-      void supabase.removeChannel(rooms);
+      void supabase.removeChannel(properties);
     };
   }, []);
 

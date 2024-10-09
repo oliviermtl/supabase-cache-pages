@@ -1,5 +1,5 @@
 export const config: Config = {
-  appName: "My App",
+  appName: "Test Views",
   appDescription: "A simple app",
 };
 

@@ -14,9 +14,40 @@ export const getCurrentUser = async () => {
 };
 
 export const getProperties = async () => {
-  const { data, error } = await supabase
-    .from("properties_view_materialized")
-    .select("*");
+  const { data, error } = await supabase.from("properties").select(
+    `
+    id,
+    slug,
+    sku,
+    type,
+    ownership,
+    price,
+    currency,
+    area_1,
+    area_2,
+    created_at,
+    images: properties_images (
+      file: media (
+        filename
+      )
+    ),
+    properties_locales (
+      title
+    ),
+    properties_spaces (
+      properties_spaces_locales (
+        title,
+        value
+      )
+    ),
+    properties_plans (
+      properties_plans_locales (
+        title,
+        value
+      )
+    )
+    `
+  );
   if (error) {
     throw error;
   }

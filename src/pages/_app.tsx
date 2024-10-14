@@ -8,7 +8,7 @@ import { theme } from "theme";
 import { Layout } from "@/components/AppShell/Layout";
 import { createClient } from "@/lib/supabase/component";
 import { config } from "@/config";
-import { GameProvider } from "@/contexts/GameProvider";
+
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import {
   HydrationBoundary,
@@ -42,11 +42,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <QueryClientProvider client={queryClient}>
           <HydrationBoundary state={pageProps.dehydratedState}>
             <ReactQueryDevtools initialIsOpen={false} />
-            <GameProvider>
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>
-            </GameProvider>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
           </HydrationBoundary>
         </QueryClientProvider>
       </SessionContextProvider>
